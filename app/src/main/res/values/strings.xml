@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Labels -->
+    <string name="app_name">Project Control</string>
+    <string name="app_name_main">Project Control</string>
+    <string name="home_title">Projects</string>
+    <string name="create_new_project_title">Create New Project</string>
+    <string name="name_hint">Name</string>
+    <string name="description_label">Description</string>
+    <string name="save_project_label">Save</string>
+    <string name="option_personal_radiobtn_label">Personal</string>
+    <string name="option_work_radiobtn_label">Work</string>
+    <string name="type_project_label">Type</string>
+    <string name="cancel_btn_label">Cancel</string>
+    <string name="time_label">Estimated Time</string>
+    <string name="time_option_description">Time option</string>
+    <string name="name_input_description">Enter the project name</string>
+    <string name="duration_time_description">Enter the project duration</string>
+    <string name="description_input_description">Enter a description for the project</string>
+    <string name="already_started_label">Already Finished</string>
+    <string name="hour">Hour</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+
+    <!-- Project notifications -->
+    <string name="project_name_empty">Name cannot be empty</string>
+    <string name="project_duration_empty">Duration must be informed</string>
+    <string name="project_created">Project [%1$s] created successfully</string>
+    <string name="name_student">Gedalias dos Santos Caldas</string>
+    <string name="email_student">gedaliascaldas@alunos.utfpr.edu.br</string>
+    <string name="app_description">Assists in managing project activities.</string>
+    <string name="project_click">Project %1$s was clicked!</string>
+    <string name="project_name_hint">My project</string>
+    <string name="project_description_hint">My description</string>
+    <string name="project_duration_hint">Duration</string>
+
+    <string name="clean_notification">The form has been cleared!</string>
+    <string name="create_field_empty">One or more fields cannot be empty.</string>
+    <string name="project_creation_cancelled">Registration has been cancelled!</string>
+    <string name="clean_lable">Clear</string>
+
+    <string name="about">About</string>
+    <string name="create_new_project">Add</string>
+    <string name="delete_option_project">Delete</string>
+    <string name="update_project">Edit</string>
+    <string name="update_title">Edit: %1$s</string>
+    <string name="project_updated">Project [%1$s] updated successfully</string>
+    <string name="project_update_cancelled">The update has been cancelled!</string>
+    <string name="night_mode">Modo noturno</string>
+</resources>

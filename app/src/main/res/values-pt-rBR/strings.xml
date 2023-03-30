@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Labels -->
+    <string name="app_name">Controle de Projeto</string>
+    <string name="app_name_main">Controle de Projetos</string>
+    <string name="home_title">Projetos</string>
+    <string name="create_new_project_title">Criar novo projeto</string>
+    <string name="name_hint">Nome</string>
+    <string name="description_label">Descrição</string>
+    <string name="save_project_label">Salvar</string>
+    <string name="option_personal_radiobtn_label">Pessoal</string>
+    <string name="option_work_radiobtn_label">Trabalho</string>
+    <string name="type_project_label">Tipo</string>
+    <string name="cancel_btn_label">Cancelar</string>
+    <string name="time_label">Tempo Estimado</string>
+    <string name="time_option_description">Opção de tempo</string>
+    <string name="name_input_description">Digitar o nome do projeto</string>
+    <string name="duration_time_description">Informar a duração do projeto</string>
+    <string name="description_input_description">Informar uma descrição do projeto</string>
+    <string name="already_started_label">Já foi finalizado</string>
+
+    <string name="hour">Hora</string>
+    <string name="day">Dia</string>
+    <string name="month">Mes</string>
+    <string name="year">Ano</string>
+
+    <!-- Project notifications -->
+    <string name="project_name_empty">O nome não poder vazio</string>
+    <string name="project_duration_empty">A duração precisa ser informada</string>
+    <string name="project_created">Projeto [%1$s] criado com sucesso</string>
+    <string name="name_student">Gedalias dos Santos Caldas</string>
+    <string name="email_student">gedaliascaldas@alunos.utfpr.edu.br</string>
+    <string name="app_description">Auxiliar no gerenciado de atividades de projetos.</string>
+    <string name="project_click">O projeto %1$s foi clicado!</string>
+    <string name="project_name_hint">Meu projeto</string>
+    <string name="project_description_hint">Minha descrição</string>
+    <string name="project_duration_hint">Duração</string>
+
+    <string name="clean_notification">O formulário foi limpo!</string>
+    <string name="create_field_empty">Um ou mais campos não podem estar vazios.</string>
+    <string name="project_creation_cancelled">O cadastro foi cancelado!</string>
+    <string name="clean_lable">Limpar</string>
+
+    <string name="about">Sobre</string>
+    <string name="create_new_project">Adicionar</string>
+    <string name="delete_option_project">Apagar</string>
+    <string name="update_project">Alterar</string>
+    <string name="update_title">Alterar: %1$s</string>
+    <string name="project_updated">Projeto [%1$s] atualizado com sucesso</string>
+    <string name="project_update_cancelled">A atualização foi cancelado!</string>
+</resources>
