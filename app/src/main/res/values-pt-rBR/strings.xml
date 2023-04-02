@@ -35,6 +35,8 @@
     <string name="project_name_hint">Meu projeto</string>
     <string name="project_description_hint">Minha descrição</string>
     <string name="project_duration_hint">Duração</string>
+    <string name="create_project_title">Criação de projeto</string>
+    <string name="updated_project_title">Atualização de projeto</string>
 
     <string name="clean_notification">O formulário foi limpo!</string>
     <string name="create_field_empty">Um ou mais campos não podem estar vazios.</string>
@@ -48,4 +50,5 @@
     <string name="update_title">Alterar: %1$s</string>
     <string name="project_updated">Projeto [%1$s] atualizado com sucesso</string>
     <string name="project_update_cancelled">A atualização foi cancelado!</string>
+    <string name="night_mode">Modo noturno</string>
 </resources>

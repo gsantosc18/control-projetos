@@ -1,8 +1,6 @@
 package com.gedalias.controledeprojeto.view;
 
 import static android.widget.Toast.LENGTH_SHORT;
-import static android.widget.Toast.makeText;
-import static java.util.Objects.requireNonNull;
 
 import android.content.Intent;
 import android.os.Build;
@@ -25,10 +23,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.gedalias.controledeprojeto.R;
 import com.gedalias.controledeprojeto.adapter.ProjectAdapter;
 import com.gedalias.controledeprojeto.domain.Project;
-import com.gedalias.controledeprojeto.domain.ProjectType;
-import com.gedalias.controledeprojeto.domain.TimeType;
 import com.gedalias.controledeprojeto.service.ConfigService;
 import com.gedalias.controledeprojeto.service.ProjectService;
+import com.gedalias.controledeprojeto.service.ServiceFactory;
+import com.gedalias.controledeprojeto.service.impl.ServiceFactoryImpl;
+import com.gedalias.controledeprojeto.util.AppFactory;
+import com.gedalias.controledeprojeto.util.Notification;
+import com.gedalias.controledeprojeto.util.impl.AppFactoryImpl;
 
 import java.util.List;
 
@@ -38,17 +39,21 @@ public class HomeActivity extends AppCompatActivity {
     private static final int UPDATE_PROJECT_ACTIVITY = 12;
     private ProjectService projectService;
     private ConfigService configService;
-
     private List<Project> projectList;
-
     private ProjectAdapter adapter;
+    private Notification notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        projectService = new ProjectService(this);
+        AppFactory factory = new AppFactoryImpl(this);
+        notification = factory.createNotification();
+
+        ServiceFactory serviceFactory = new ServiceFactoryImpl(this);
+        projectService = serviceFactory.createProjectService();
+        configService = serviceFactory.createConfigService();
+
         projectList = projectService.all();
-        configService = new ConfigService(this);
 
         toggleDarkMode();
 
@@ -128,13 +133,13 @@ public class HomeActivity extends AppCompatActivity {
         Log.i("selectedItemContext", "Selecionado o item: "+info.position);
 
         switch (item.getItemId()) {
-            case R.id.delete_project:
+            case OPTION_DELETE_PROJECT:
                 final Project projectToDelete = projectList.get(info.position);
                 projectService.delete(projectToDelete.getId());
                 loadProjectsAndUpdateAdapter();
                 break;
-            case R.id.update_project:
-                Project project = projectService.findById(info.position);
+            case OPTION_UPDATE_PROJECT:
+                Project project = projectList.get(info.position);
                 Intent intent = new Intent(this, CreateProjectActivity.class);
                 intent.putExtra("project", project);
                 intent.putExtra("projectId", info.position);
@@ -162,19 +167,14 @@ public class HomeActivity extends AppCompatActivity {
                 final Project project = (Project) data.getExtras().getSerializable("project");
                 projectService.save(project);
                 loadProjectsAndUpdateAdapter();
-                makeText(
-                        this,
-                        getString(R.string.project_created, project.getName()),
-                        LENGTH_SHORT
-                ).show();
+                notification.success(
+                    getString(R.string.create_project_title),
+                    getString(R.string.project_created, project.getName())
+                );
                 Log.i("onProjectSaved",
                         "The project was saved: "+project.getName()); break;
             case RESULT_CANCELED:
-                makeText(
-                    this,
-                    getString(R.string.project_creation_cancelled),
-                    LENGTH_SHORT
-                ).show();
+                notification.onlyText(getString(R.string.project_creation_cancelled));
                 Log.i("onProjectCancelled",
                         "The project creation was cancelled"); break;
         }
@@ -188,18 +188,13 @@ public class HomeActivity extends AppCompatActivity {
                 final Project projectFoundInList = projectList.get(projectId);
                 projectService.updateById(projectFoundInList.getId(), project);
                 loadProjectsAndUpdateAdapter();
-                makeText(
-                    this,
-                    getString(R.string.project_updated, project.getName()),
-                    LENGTH_SHORT
-                ).show();
+                notification.success(
+                        getString(R.string.updated_project_title),
+                        getString(R.string.project_updated, project.getName())
+                );
                 break;
             case RESULT_CANCELED:
-                makeText(
-                    this,
-                    getString(R.string.project_update_cancelled),
-                    LENGTH_SHORT
-                ).show();
+                notification.onlyText(getString(R.string.project_update_cancelled));
                 Log.i("onProjectCancelled",
                         "The project update was cancelled"); break;
         }
@@ -215,6 +210,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private final int CREATE_NEW_PROJECT = R.id.create_new;
     private final int ABOUT = R.id.about;
-
     private final int NIGHT_MODE = R.id.nightModeOpt;
+
+    private final int OPTION_DELETE_PROJECT = R.id.delete_project;
+    private final int OPTION_UPDATE_PROJECT = R.id.update_project;
 }

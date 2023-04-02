@@ -47,4 +47,7 @@
     <string name="update_title">Edit: %1$s</string>
     <string name="project_updated">Project [%1$s] updated successfully</string>
     <string name="project_update_cancelled">The update has been cancelled!</string>
+    <string name="create_project_title">Project creation</string>
+    <string name="night_mode">Night mode</string>
+    <string name="updated_project_title">Project update</string>
 </resources>

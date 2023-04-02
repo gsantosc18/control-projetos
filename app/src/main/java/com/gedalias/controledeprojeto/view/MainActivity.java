@@ -10,15 +10,18 @@ import android.view.Window;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gedalias.controledeprojeto.LauncherActivity;
 import com.gedalias.controledeprojeto.R;
+import com.gedalias.controledeprojeto.util.AppFactory;
+import com.gedalias.controledeprojeto.util.Launcher;
+import com.gedalias.controledeprojeto.util.impl.AppFactoryImpl;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
+@RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
 public class MainActivity extends AppCompatActivity {
-    private final LauncherActivity launchActivity;
+    private final Launcher launchActivity;
 
     public MainActivity() {
-        launchActivity = new LauncherActivity(this);
+        AppFactory factory = new AppFactoryImpl(this);
+        launchActivity = factory.createLauncher();
     }
 
     @Override

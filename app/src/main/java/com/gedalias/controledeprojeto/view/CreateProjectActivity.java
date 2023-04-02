@@ -1,23 +1,17 @@
 package com.gedalias.controledeprojeto.view;
 
-import static android.widget.Toast.makeText;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -26,8 +20,9 @@ import com.gedalias.controledeprojeto.R;
 import com.gedalias.controledeprojeto.domain.Project;
 import com.gedalias.controledeprojeto.domain.ProjectType;
 import com.gedalias.controledeprojeto.domain.TimeType;
-
-import java.util.Map;
+import com.gedalias.controledeprojeto.util.AppFactory;
+import com.gedalias.controledeprojeto.util.Notification;
+import com.gedalias.controledeprojeto.util.impl.AppFactoryImpl;
 
 
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -39,15 +34,18 @@ public class CreateProjectActivity extends BaseActivity {
     private Spinner optTime;
     private EditText duration;
     private CheckBox alreadyFinished;
-
-    private Project project;
     private int projectId;
+
+    private Notification notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.create_new_project_title);
         setContentView(R.layout.activity_create_project);
+        AppFactory factory = new AppFactoryImpl(this);
+
+        notification = factory.createNotification();
 
         name = (EditText) findViewById(R.id.nameInput);
         description = (EditText) findViewById(R.id.descriptionInput);
@@ -57,7 +55,7 @@ public class CreateProjectActivity extends BaseActivity {
         alreadyFinished = (CheckBox) findViewById(R.id.alreadyCheckbox);
 
         if(hasProject()) {
-            project = getProject();
+            Project project = getProject();
             projectId = this.getIntent().getIntExtra("projectId", -1);
             name.setText(project.getName());
             description.setText(project.getDescription());
@@ -89,7 +87,7 @@ public class CreateProjectActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.clean_option:
+            case CLEAN_OPTION:
                 name.setText("");
                 description.setText("");
                 optTime.clearFocus();
@@ -101,14 +99,15 @@ public class CreateProjectActivity extends BaseActivity {
                 RadioButton radioButton = (RadioButton) findViewById(R.id.opt_work);
                 radioButton.setChecked(true);
 
-                Toast.makeText(this, getText(R.string.clean_notification), Toast.LENGTH_SHORT).show();
+                final int titleId = hasProject()? R.string.updated_project_title : R.string.create_project_title;
+                notification.success(getString(titleId), getString(R.string.clean_notification));
                 break;
-            case R.id.save_option:
+            case SAVE_OPTION:
                 final boolean validInputs = validateFieldAndInputFocus(name, description, duration);
 
                 if(!validInputs) {
                     final String messageInvalidField = getString(R.string.create_field_empty);
-                    makeText(CreateProjectActivity.this, messageInvalidField, Toast.LENGTH_LONG).show();
+                    notification.error(getString(R.string.create_project_title), messageInvalidField);
                     Log.e("onSaveProject", messageInvalidField);
                 } else {
                     RadioButton typeProject = (RadioButton) findViewById(typeGroup.getCheckedRadioButtonId());
@@ -170,4 +169,7 @@ public class CreateProjectActivity extends BaseActivity {
     private boolean isEmptyInput(EditText editText) {
         return editText.getText().toString().isEmpty();
     }
+
+    private final int CLEAN_OPTION = R.id.clean_option;
+    private final int SAVE_OPTION = R.id.save_option;
 }
