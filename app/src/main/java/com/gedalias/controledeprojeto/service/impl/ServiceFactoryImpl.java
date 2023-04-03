@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import com.gedalias.controledeprojeto.service.ConfigService;
 import com.gedalias.controledeprojeto.service.ProjectService;
 import com.gedalias.controledeprojeto.service.ServiceFactory;
+import com.gedalias.controledeprojeto.service.TaskService;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class ServiceFactoryImpl implements ServiceFactory {
@@ -28,5 +29,10 @@ public class ServiceFactoryImpl implements ServiceFactory {
     @Override
     public ConfigService createConfigService() {
         return new ConfigServiceImpl(context);
+    }
+
+    @Override
+    public TaskService createTaskService() {
+        return new TaskServiceImpl(context);
     }
 }

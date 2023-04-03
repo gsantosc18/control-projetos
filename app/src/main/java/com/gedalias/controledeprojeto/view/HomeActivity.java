@@ -129,27 +129,40 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
         Log.i("selectedItemContext", "Selecionado o item: "+info.position);
 
+        final Project projectSelected = projectList.get(info.position);
+
         switch (item.getItemId()) {
-            case OPTION_DELETE_PROJECT:
-                final Project projectToDelete = projectList.get(info.position);
-                projectService.delete(projectToDelete.getId());
+            case DELETE_PROJECT:
+                projectService.delete(projectSelected.getId());
                 loadProjectsAndUpdateAdapter();
                 break;
-            case OPTION_UPDATE_PROJECT:
-                Project project = projectList.get(info.position);
-                Intent intent = new Intent(this, CreateProjectActivity.class);
-                intent.putExtra("project", project);
-                intent.putExtra("projectId", info.position);
-                startActivityForResult(
-                    intent,
-                    UPDATE_PROJECT_ACTIVITY
-                );
+            case UPDATE_PROJECT:
+                startUpdateProjectActivity(info.position, projectSelected);
+                break;
+            case TASK_PROJECT:
+                startTaskProjectActivity(projectSelected);
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void startUpdateProjectActivity(int position, Project projectSelected) {
+        final Intent intent = new Intent(this, CreateProjectActivity.class);
+        intent.putExtra("project", projectSelected);
+        intent.putExtra("projectId", position);
+        startActivityForResult(
+            intent,
+            UPDATE_PROJECT_ACTIVITY
+        );
+    }
+
+    private void startTaskProjectActivity(Project projectSelected) {
+        final Intent intent = new Intent(this, TaskActivity.class);
+        intent.putExtra("projectId", projectSelected.getId());
+        intent.putExtra("projectName", projectSelected.getName());
+        startActivity(intent);
     }
 
     private void loadProjectsAndUpdateAdapter() {
@@ -212,6 +225,7 @@ public class HomeActivity extends AppCompatActivity {
     private final int ABOUT = R.id.about;
     private final int NIGHT_MODE = R.id.nightModeOpt;
 
-    private final int OPTION_DELETE_PROJECT = R.id.delete_project;
-    private final int OPTION_UPDATE_PROJECT = R.id.update_project;
+    private final int DELETE_PROJECT = R.id.delete_project;
+    private final int UPDATE_PROJECT = R.id.update_project;
+    private final int TASK_PROJECT = R.id.task_project;
 }

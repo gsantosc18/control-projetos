@@ -51,4 +51,11 @@
     <string name="project_updated">Projeto [%1$s] atualizado com sucesso</string>
     <string name="project_update_cancelled">A atualização foi cancelado!</string>
     <string name="night_mode">Modo noturno</string>
+    <string name="task_project">Atividades</string>
+    <string name="create_task">Criar tarefa</string>
+    <string name="taskstatus_to_do">A fazer</string>
+    <string name="taskstatus_backlog">Backlog</string>
+    <string name="taskstatus_in_progress">Em progresso</string>
+    <string name="taskstatus_test">Teste</string>
+    <string name="taskstatus_done">Feito</string>
 </resources>

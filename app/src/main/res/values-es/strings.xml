@@ -50,4 +50,11 @@
     <string name="create_project_title">Creación de proyectos</string>
     <string name="night_mode">Modo nocturno</string>
     <string name="updated_project_title">Actualización del proyecto</string>
+    <string name="task_project">Actividades</string>
+    <string name="create_task">Crear tarea</string>
+    <string name="taskstatus_to_do">A hacer</string>
+    <string name="taskstatus_backlog">Backlog</string>
+    <string name="taskstatus_in_progress">En progreso</string>
+    <string name="taskstatus_test">Prueba</string>
+    <string name="taskstatus_done">Hecho</string>
 </resources>

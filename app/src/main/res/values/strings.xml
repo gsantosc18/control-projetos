@@ -50,4 +50,11 @@
     <string name="night_mode">Night mode</string>
     <string name="create_project_title">Project creation</string>
     <string name="updated_project_title">Project update</string>
+    <string name="task_project">Tasks</string>
+    <string name="create_task">Create Task</string>
+    <string name="taskstatus_backlog">Backlog</string>
+    <string name="taskstatus_to_do">To do</string>
+    <string name="taskstatus_in_progress">In progress</string>
+    <string name="taskstatus_test">Test</string>
+    <string name="taskstatus_done">Done</string>
 </resources>
