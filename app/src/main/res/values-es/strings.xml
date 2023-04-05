@@ -57,4 +57,9 @@
     <string name="taskstatus_in_progress">En progreso</string>
     <string name="taskstatus_test">Prueba</string>
     <string name="taskstatus_done">Hecho</string>
+    <string name="create_new_task">Crear nueva actividad</string>
+    <string name="task_status_label">Situación</string>
+    <string name="create_new_task_sucess">Actividad creada con éxito</string>
+    <string name="create_at_label">Creado</string>
+    <string name="updated_at_label">Actualizado</string>
 </resources>

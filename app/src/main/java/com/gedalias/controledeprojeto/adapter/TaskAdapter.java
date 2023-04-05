@@ -21,6 +21,10 @@ public class TaskAdapter extends BaseAdapter {
         this.tasks = tasks;
     }
 
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public int getCount() {
         return tasks.size();

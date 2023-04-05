@@ -57,4 +57,16 @@
     <string name="taskstatus_in_progress">In progress</string>
     <string name="taskstatus_test">Test</string>
     <string name="taskstatus_done">Done</string>
+    <string name="create_new_task">Create new task</string>
+    <string name="task_status_label">Status</string>
+    <string name="create_new_task_sucess">Task created with success</string>
+    <string name="create_at_label">Created</string>
+    <string name="updated_at_label">Updated:</string>
+    <string-array name="task_status_array">
+        <item>@string/taskstatus_backlog</item>
+        <item>@string/taskstatus_to_do</item>
+        <item>@string/taskstatus_in_progress</item>
+        <item>@string/taskstatus_test</item>
+        <item>@string/taskstatus_done</item>
+    </string-array>
 </resources>

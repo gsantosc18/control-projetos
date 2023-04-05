@@ -1,6 +1,7 @@
 package com.gedalias.controledeprojeto.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Task implements Serializable {
     private int id;
@@ -8,6 +9,8 @@ public class Task implements Serializable {
     private String name;
     private String description;
     private TaskStatus status;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Task() {
     }
@@ -25,6 +28,16 @@ public class Task implements Serializable {
         this.name = name;
         this.description = description;
         this.status = status;
+    }
+
+    public Task(int id, int projectId, String name, String description, TaskStatus status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.projectId = projectId;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -65,5 +78,21 @@ public class Task implements Serializable {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
