@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-import androidx.room.Room;
 
 import com.gedalias.controledeprojeto.domain.Project;
 import com.gedalias.controledeprojeto.persistence.dao.ProjectDao;
@@ -21,17 +20,15 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectDao projectDao;
 
     public ProjectServiceImpl(Context context) {
-        ProjectDatabase database = Room.databaseBuilder(context, ProjectDatabase.class, ProjectDatabase.NAME)
-                .allowMainThreadQueries()
-                .build();
+        ProjectDatabase database = ProjectDatabase.getDatabase(context);
         projectDao = database.projectDao();
     }
 
     public List<Project> all() {
         return projectDao.all()
-                .stream()
-                .map(ProjectMapper::toDomain)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ProjectMapper::toDomain)
+            .collect(Collectors.toList());
     }
 
     public void save(Project project) {

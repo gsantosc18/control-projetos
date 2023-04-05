@@ -1,9 +1,14 @@
 package com.gedalias.controledeprojeto.persistence.mapper;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.gedalias.controledeprojeto.domain.Project;
 import com.gedalias.controledeprojeto.persistence.entity.ProjectEntity;
 
 public final class ProjectMapper {
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static ProjectEntity toEntity(final Project project) {
         return new ProjectEntity(
             project.getId(),
@@ -16,6 +21,7 @@ public final class ProjectMapper {
         );
     }
     
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Project toDomain(final ProjectEntity entity) {
         return new Project(
             entity.getId(),

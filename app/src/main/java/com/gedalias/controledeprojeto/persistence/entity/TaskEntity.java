@@ -1,28 +1,37 @@
-package com.gedalias.controledeprojeto.domain;
+package com.gedalias.controledeprojeto.persistence.entity;
 
-import java.io.Serializable;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.gedalias.controledeprojeto.domain.TaskStatus;
+import com.gedalias.controledeprojeto.persistence.converter.LocalDateTimeConverter;
+
 import java.time.LocalDateTime;
 
-public class Task implements Serializable {
+@RequiresApi(api = Build.VERSION_CODES.O)
+@Entity(tableName = "task", foreignKeys = @ForeignKey(
+        entity = ProjectEntity.class, parentColumns = "id", childColumns = "projectId"
+))
+public class TaskEntity {
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
+    @ColumnInfo(index = true)
     private int projectId;
     private String name;
     private String description;
     private TaskStatus status;
+    @TypeConverters(LocalDateTimeConverter.class)
     private LocalDateTime createdAt;
+    @TypeConverters(LocalDateTimeConverter.class)
     private LocalDateTime updatedAt;
 
-    public Task() {
-    }
-
-    public Task(int projectId, String name, String description, TaskStatus status) {
-        this.projectId = projectId;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
-
-    public Task(Integer id, int projectId, String name, String description, TaskStatus status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public TaskEntity(Integer id, int projectId, String name, String description, TaskStatus status, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.projectId = projectId;
         this.name = name;
