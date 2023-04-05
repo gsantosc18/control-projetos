@@ -62,6 +62,8 @@
     <string name="create_new_task_sucess">Task created with success</string>
     <string name="create_at_label">Created</string>
     <string name="updated_at_label">Updated:</string>
+    <string name="delete_task">Delete task</string>
+    <string name="delete_task_success">Task deleted with success</string>
     <string-array name="task_status_array">
         <item>@string/taskstatus_backlog</item>
         <item>@string/taskstatus_to_do</item>

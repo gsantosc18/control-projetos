@@ -3,6 +3,7 @@ package com.gedalias.controledeprojeto.view;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gedalias.controledeprojeto.R;
 import com.gedalias.controledeprojeto.adapter.TaskAdapter;
@@ -98,6 +100,21 @@ public class TaskActivity extends BaseActivity {
             case CREATE_NEW_TASK:
                 createTaskPerformOnResult(resultCode, data);
                 break;
+            case TASK_VIEW:
+                taskViewPerformOnResult(resultCode, data);
+        }
+    }
+
+    private void taskViewPerformOnResult(int resultCode, Intent data) {
+        switch (resultCode) {
+            case RESULT_OK:
+                final String action = data.getStringExtra("action");
+                final int taskId = data.getIntExtra("taskId", 0);
+                if(action.equals("delete") && taskId > 0) {
+                    taskService.deleteById(taskId);
+                    reloadTaskList();
+                    notification.success(getString(R.string.delete_task), getString(R.string.delete_task_success));
+                }
         }
     }
 

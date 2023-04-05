@@ -69,7 +69,7 @@ public class ProjectAdapter extends BaseAdapter {
 
         holder.name.setText(project.getName());
         holder.description.setText(project.getDescription());
-        holder.duration.setText(String.format("%d(%s)", project.getDuration(),project.getTimeOption().getTimeOption()));
+        holder.duration.setText(String.format("%d(%s)", project.getDuration(), convertView.getResources().getString(project.getTimeOption().getTimeOption())));
         holder.type.setText(project.getType().getType());
 
         return convertView;

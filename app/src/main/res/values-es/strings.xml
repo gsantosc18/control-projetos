@@ -62,4 +62,6 @@
     <string name="create_new_task_sucess">Actividad creada con éxito</string>
     <string name="create_at_label">Creado</string>
     <string name="updated_at_label">Actualizado</string>
+    <string name="delete_task_success">Trabajo eliminado con éxito</string>
+    <string name="delete_task">Eliminar tarea</string>
 </resources>

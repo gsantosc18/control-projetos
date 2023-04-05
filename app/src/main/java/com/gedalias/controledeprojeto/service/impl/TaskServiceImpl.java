@@ -38,4 +38,9 @@ public class TaskServiceImpl implements TaskService {
         TaskEntity toSaveTask = TaskMapper.toEntity(task);
         taskDao.insert(toSaveTask);
     }
+
+    @Override
+    public void deleteById(int taskId) {
+        taskDao.delete(taskId);
+    }
 }
