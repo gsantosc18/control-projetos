@@ -115,6 +115,9 @@ public class TaskActivity extends BaseActivity {
                     reloadTaskList();
                     notification.success(getString(R.string.delete_task), getString(R.string.delete_task_success));
                 }
+                break;
+            case RESULT_CANCELED:
+                reloadTaskList();
         }
     }
 

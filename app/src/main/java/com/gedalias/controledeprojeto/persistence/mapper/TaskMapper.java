@@ -9,21 +9,20 @@ import com.gedalias.controledeprojeto.persistence.entity.TaskEntity;
 
 import java.time.LocalDateTime;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class TaskMapper {
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static TaskEntity toEntity(Task task) {
         return new TaskEntity(
-            null,
+            task.getId(),
             task.getProjectId(),
             task.getName(),
             task.getDescription(),
             task.getStatus(),
-            LocalDateTime.now(),
-            null
+            task.getCreatedAt(),
+            task.getUpdatedAt()
         );
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Task toDomain(TaskEntity task) {
         return new Task(
             task.getId(),
@@ -31,8 +30,8 @@ public class TaskMapper {
             task.getName(),
             task.getDescription(),
             task.getStatus(),
-            LocalDateTime.now(),
-            null
+            task.getCreatedAt(),
+            task.getUpdatedAt()
         );
     }
 }

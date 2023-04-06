@@ -50,4 +50,9 @@ public class ProjectServiceImpl implements ProjectService {
         entity.setId(id);
         projectDao.update(entity);
     }
+
+    @Override
+    public boolean isAssociatedToAnyTask(int id) {
+        return projectDao.countTasksByProject(id) != 0;
+    }
 }

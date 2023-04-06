@@ -135,8 +135,12 @@ public class HomeActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case DELETE_PROJECT:
-                projectService.delete(projectSelected.getId());
-                loadProjectsAndUpdateAdapter();
+                if(!projectService.isAssociatedToAnyTask(projectSelected.getId())) {
+                    projectService.delete(projectSelected.getId());
+                    loadProjectsAndUpdateAdapter();
+                } else {
+                    notification.error(getString(R.string.create_project_title), getString(R.string.error_delete_project));
+                }
                 break;
             case UPDATE_PROJECT:
                 startUpdateProjectActivity(info.position, projectSelected);

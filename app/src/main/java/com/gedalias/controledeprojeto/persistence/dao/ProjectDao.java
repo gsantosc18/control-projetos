@@ -25,4 +25,7 @@ public interface ProjectDao {
 
     @Update
     void update(ProjectEntity projectEntity);
+
+    @Query("SELECT count(*) FROM task where projectId = :id LIMIT 1")
+    int countTasksByProject(int id);
 }

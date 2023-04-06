@@ -14,6 +14,7 @@ import com.gedalias.controledeprojeto.persistence.entity.TaskEntity;
 import com.gedalias.controledeprojeto.persistence.mapper.TaskMapper;
 import com.gedalias.controledeprojeto.service.TaskService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -21,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
     private final TaskDao taskDao;
 
     public TaskServiceImpl(Context context) {
-        ProjectDatabase projectDatabase = ProjectDatabase.getDatabase(context);
+        final ProjectDatabase projectDatabase = ProjectDatabase.getDatabase(context);
         taskDao = projectDatabase.taskDao();
     }
 
@@ -35,12 +36,19 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void save(Task task) {
-        TaskEntity toSaveTask = TaskMapper.toEntity(task);
-        taskDao.insert(toSaveTask);
+        task.setCreatedAt(LocalDateTime.now());
+        taskDao.insert(TaskMapper.toEntity(task));
     }
 
     @Override
     public void deleteById(int taskId) {
         taskDao.delete(taskId);
+    }
+
+    @Override
+    public Task update(Task task) {
+        task.setUpdatedAt(LocalDateTime.now());
+        taskDao.update(TaskMapper.toEntity(task));
+        return task;
     }
 }

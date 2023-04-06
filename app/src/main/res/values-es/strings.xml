@@ -64,4 +64,5 @@
     <string name="updated_at_label">Actualizado</string>
     <string name="delete_task_success">Trabajo eliminado con éxito</string>
     <string name="delete_task">Eliminar tarea</string>
+    <string name="error_delete_project">Todavía hay tareas asociadas con el proyecto.</string>
 </resources>
